@@ -1,0 +1,99 @@
+<div class="popup">
+  <div class="popup-header d-flex justify-content-between align-items-center">
+    <h2 class="m-0">{{ data.isEdit ? "Update" : "Add" }} HBNC</h2>
+    <i class="fa-solid fa-xmark" (click)="toClose()"></i>
+  </div>
+  <form [formGroup]="hbncForm" (ngSubmit)="onSubmit()">
+    <div class="popup-body">
+      <div class="inp-field">
+        <label for="" class="label">Parents</label>
+        <span class="d-block">
+          {{ data.ancData.name }} w/o
+          {{ data.ancData.husbandName }}
+        </span>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">DOB</label>
+        <input
+          type="date"
+          class="form-control"
+          name=""
+          id=""
+          formControlName="childBirthDate"
+        />
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Gender</label>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Select Gender" formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <ng-container formArrayName="hbnc">
+        <div
+          class="inp-field"
+          *ngFor="let record of hbnc.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <label for="" class="label"
+            >{{
+              i + 1 == 1
+                ? "1st"
+                : i + 1 == 2
+                ? "2nd"
+                : i + 1 == 3
+                ? "3rd"
+                : i + 1 + "th"
+            }}
+            HBNC</label
+          >
+          <div class="d-flex gap-2">
+            <input
+              type="date"
+              class="form-control"
+              name=""
+              id=""
+              formControlName="date"
+            />
+            <input
+              type="text"
+              class="form-control"
+              name=""
+              id=""
+              placeholder="Enter Weight"
+              formControlName="weight"
+            />
+          </div>
+        </div>
+      </ng-container>
+      <span
+        class="anchor-add-hbnc mt-1"
+        (click)="addHbncRecord()"
+        *ngIf="hbnc.length < 7"
+        >Add
+        {{
+          hbnc.length + 1 == 2
+            ? "2nd"
+            : hbnc.length + 1 == 3
+            ? "3rd"
+            : hbnc.length + 1 + "th"
+        }}
+        HBNC</span
+      >
+      <div class="d-flex justify-content-center mt-2 gap-2">
+        <button
+          class="btn btn-secondary w-100"
+          type="button"
+          (click)="toReset()"
+        >
+          Reset
+        </button>
+        <button class="btn btn-primary w-100" type="submit">
+          {{ data.isEdit ? "Update" : "Add" }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,34 @@
+.title{
+    background-color: #009393;
+    border-radius: 5px 5px 0 0;
+    height: 30px;
+    h2{
+        font-size: 0.875rem;
+        color: #fff;
+    }
+}
+.card{
+    &-title{
+        background-color: #009393;
+        padding: 5px;
+        border-radius: 5px 5px 0 0;
+        h2{
+            color: #fff;
+            font-size: 1rem;
+        }
+    }
+    &-body{
+        height: calc(100dvh - 145px);
+        overflow: auto;
+    }
+    .fields{
+        .label{
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        p{
+            font-size: 0.875rem;
+            margin-top: -5px !important;
+        }
+    }
+}

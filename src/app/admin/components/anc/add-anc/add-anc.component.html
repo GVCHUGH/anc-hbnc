@@ -1,0 +1,231 @@
+<div class="popup">
+  <div class="popup-header d-flex justify-content-between align-items-center">
+    <h2 class="m-0">{{ data.isEdit ? "Update" : "Add" }} ANC</h2>
+    <i class="fa-solid fa-xmark" (click)="toClose()"></i>
+  </div>
+  <form [formGroup]="ancForm" (ngSubmit)="onSubmit()">
+    <div class="popup-body">
+      <div class="inp-field">
+        <label for="" class="label">PCTS No.</label>
+        <div class="d-flex with-prefix position-relative">
+          <button
+            class="btn"
+            type="button"
+            mat-button
+            [matMenuTriggerFor]="menu"
+          >
+            {{ pctsPrefix }}<i class="fa-solid fa-caret-down ms-2"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="selectPCTSPrefix('07060900200')">
+              07060900200
+            </button>
+            <button mat-menu-item (click)="selectPCTSPrefix('07060950500')">
+              07060950500
+            </button>
+          </mat-menu>
+
+          <input
+            type="text"
+            class="form-control"
+            formControlName="pcts"
+            maxlength="5"
+          />
+          <div
+            class="error-msg"
+            *ngIf="ancForm.get('pcts')?.touched && ancForm.get('pcts')?.invalid"
+          >
+            <span *ngIf="ancForm.get('pcts')?.errors?.['required']"
+              >Required</span
+            >
+            <span
+              *ngIf="ancForm.get('pcts')?.errors?.['minlength'] && !ancForm.get('pcts')?.errors?.['required']"
+              >Minimum 5 digit</span
+            >
+            <span
+              *ngIf="ancForm.get('pcts')?.errors?.['pattern'] && !ancForm.get('pcts')?.errors?.['maxlength'] && !ancForm.get('pcts')?.errors?.['minlength'] && !ancForm.get('pcts')?.errors?.['required']"
+              >Only numeric digit allowed</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+        <div
+          class="error-msg"
+          *ngIf="ancForm.get('name')?.touched && ancForm.get('name')?.invalid"
+        >
+          <span *ngIf="ancForm.get('name')?.errors?.['required']"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Husband Name</label>
+        <input type="text" class="form-control" formControlName="husbandName" />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('husbandName')?.touched &&
+            ancForm.get('husbandName')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('husbandName')?.errors?.['required']"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">LMP Date</label>
+        <input type="date" class="form-control" formControlName="lmpDate" />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('lmpDate')?.touched && ancForm.get('lmpDate')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('lmpDate')?.errors?.['required']"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Aadhar No.</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="aadhar"
+          maxlength="12"
+        />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('aadhar')?.touched && ancForm.get('aadhar')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('aadhar')?.errors?.['required']"
+            >Required</span
+          >
+          <span
+            *ngIf="ancForm.get('aadhar')?.errors?.['minlength'] && !ancForm.get('aadhar')?.errors?.['required']"
+            >Minimum 12 digit</span
+          >
+          <span
+            *ngIf="ancForm.get('aadhar')?.errors?.['pattern'] && !ancForm.get('aadhar')?.errors?.['maxlength'] && !ancForm.get('aadhar')?.errors?.['minlength'] && !ancForm.get('aadhar')?.errors?.['required']"
+            >Only numeric digit allowed</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Account No.</label>
+        <input type="text" class="form-control" formControlName="account" />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('account')?.touched && ancForm.get('account')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('account')?.errors?.['required']"
+            >Required</span
+          >
+          <span
+            *ngIf="ancForm.get('account')?.errors?.['pattern'] && !ancForm.get('account')?.errors?.['maxlength'] && !ancForm.get('account')?.errors?.['minlength'] && !ancForm.get('account')?.errors?.['required']"
+            >Only numeric digit allowed</span
+          >
+          <!-- <span
+            *ngIf="ancForm.get('pcts')?.errors?.['minlength'] && !ancForm.get('pcts')?.errors?.['required']"
+            >Minimum 5 digit</span
+          > -->
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Jan Aadhar No.</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="janAadhar"
+          maxlength="10"
+        />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('janAadhar')?.touched &&
+            ancForm.get('janAadhar')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('janAadhar')?.errors?.['required']"
+            >Required</span
+          >
+          <span
+            *ngIf="ancForm.get('janAadhar')?.errors?.['minlength'] && !ancForm.get('janAadhar')?.errors?.['required']"
+            >Minimum 10 digit</span
+          >
+          <span
+            *ngIf="ancForm.get('janAadhar')?.errors?.['pattern'] && !ancForm.get('janAadhar')?.errors?.['maxlength'] && !ancForm.get('janAadhar')?.errors?.['minlength'] && !ancForm.get('janAadhar')?.errors?.['required']"
+            >Only numeric digit allowed</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">DOB</label>
+        <input
+          type="date"
+          class="form-control"
+          formControlName="motherBirthDate"
+        />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('motherBirthDate')?.touched &&
+            ancForm.get('motherBirthDate')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('motherBirthDate')?.errors?.['required']"
+            >Required</span
+          >
+        </div>
+      </div>
+      <div class="inp-field position-relative">
+        <label for="" class="label">Mobile</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="mobile"
+          maxlength="10"
+        />
+        <div
+          class="error-msg"
+          *ngIf="
+            ancForm.get('mobile')?.touched && ancForm.get('mobile')?.invalid
+          "
+        >
+          <span *ngIf="ancForm.get('mobile')?.errors?.['required']"
+            >Required</span
+          >
+          <span
+            *ngIf="ancForm.get('mobile')?.errors?.['minlength'] && !ancForm.get('mobile')?.errors?.['required']"
+            >Minimum 10 digit</span
+          >
+          <span
+            *ngIf="ancForm.get('mobile')?.errors?.['pattern'] && !ancForm.get('mobile')?.errors?.['maxlength'] && !ancForm.get('mobile')?.errors?.['minlength'] && !ancForm.get('mobile')?.errors?.['required']"
+            >Only numeric digit allowed</span
+          >
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mt-3 gap-2">
+        <button
+          class="btn btn-secondary w-100"
+          type="button"
+          (click)="toReset()"
+        >
+          Reset
+        </button>
+        <button class="btn btn-primary w-100" [disabled]="ancForm.invalid">
+          {{ data.isEdit ? "Update" : "Add" }}
+        </button>
+        <!-- <button class="btn btn-primary w-100">Save</button> -->
+      </div>
+    </div>
+  </form>
+</div>

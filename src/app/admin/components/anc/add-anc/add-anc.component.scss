@@ -1,0 +1,30 @@
+.popup{
+    width: 95vw;
+    &-header{
+        height: 40px;
+        background-color: #009393;
+        padding: 10px;
+        color: #fff;
+        h2{
+            font-size: 1rem;
+        }
+    }
+    &-body{
+        padding: 5px 10px;
+        height: 85dvh;
+        overflow: auto;
+    }
+}
+.with-prefix{
+    border: 1px solid #bababa;
+    border-radius: 5px;
+    .btn{
+        width: 50%;
+        border-radius: 5px 0 0 5px;
+        border-right: 1px solid #bababa;
+    }
+    input{
+        width: 50%;
+        border: none;
+    }
+}

@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-title m-0 d-flex justify-content-between align-items-center">
+    <h2 class="m-0">ANC</h2>
+    <button class="btn btn-primary btn-lg--add" (click)="toAdd()">
+      Add ANC
+    </button>
+  </div>
+  <div class="card-body px-2 py-1">
+    <div class="card mb-1" *ngFor="let item of ancData">
+      <div class="title d-flex justify-content-between align-items-center px-2">
+        <h2 class="m-0">{{ item.name + "/" + item.husbandName }}</h2>
+        <button class="btn" type="button" mat-button [matMenuTriggerFor]="menu">
+          <i class="fa-solid fa-ellipsis text-light pointer"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="toView(item)">View</button>
+          <button mat-menu-item (click)="toEdit(item)">Edit</button>
+          <button mat-menu-item (click)="toHBNC(item)">HBNC</button>
+          <button mat-menu-item (click)="toDelete(item)">Delete</button>
+        </mat-menu>
+      </div>
+      <div class="row m-0 px-1">
+        <div class="col-6 px-1">
+          <div class="fields">
+            <label for="" class="label">PCTS No.</label>
+            <p class="m-0">{{ item.pcts }}</p>
+          </div>
+        </div>
+        <div class="col-6 px-1">
+          <div class="fields">
+            <label for="" class="label">LMP Date</label>
+            <p class="m-0">{{ item.lmpDate }}</p>
+          </div>
+        </div>
+        <div class="col-6 px-1">
+          <div class="fields">
+            <label for="" class="label">Aadhar</label>
+            <p class="m-0">{{ item.aadhar }}</p>
+          </div>
+        </div>
+        <div class="col-6 px-1">
+          <div class="fields">
+            <label for="" class="label">Mobile</label>
+            <p class="m-0">{{ item.mobile }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
