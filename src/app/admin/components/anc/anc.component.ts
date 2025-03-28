@@ -4,6 +4,7 @@ import { AddAncComponent } from './add-anc/add-anc.component';
 import { AncService } from '../../service/anc.service';
 import { DeleteConfirmationComponent } from '../../../shared/components/delete-confirmation/delete-confirmation.component';
 import { AddHbncComponent } from './add-hbnc/add-hbnc.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-anc',
@@ -11,7 +12,11 @@ import { AddHbncComponent } from './add-hbnc/add-hbnc.component';
   styleUrl: './anc.component.scss',
 })
 export class AncComponent {
-  constructor(private dialog: MatDialog, private ancService: AncService) {}
+  constructor(
+    private dialog: MatDialog,
+    private ancService: AncService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getAllANC();
@@ -54,7 +59,13 @@ export class AncComponent {
         }
       });
   }
-  toView(data: any) {}
+  toView(data: any) {
+    this.router.navigate(['/view-anc'], {
+      state: {
+        viewData: data,
+      },
+    });
+  }
   toDelete(data: any) {
     this.dialog
       .open(DeleteConfirmationComponent, {

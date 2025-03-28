@@ -64,12 +64,48 @@ export class AddHbncComponent {
   }
 
   addHbncRecord() {
+    console.log(this.hbnc.length);
+    let newDate = this.hbncForm.value.childBirthDate;
+
+    switch (this.hbnc.length) {
+      case 0:
+        newDate = this.hbncForm.value.childBirthDate;
+        break;
+      case 1:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 3);
+        break;
+      case 2:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 7);
+        break;
+      case 3:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 14);
+        break;
+      case 4:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 21);
+        break;
+      case 5:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 28);
+        break;
+      case 6:
+        newDate = this.addDays(this.hbncForm.value.childBirthDate, 42);
+        break;
+      default:
+        console.log('All records added');
+        return; // Prevent adding more records after 5 entries
+    }
+
     const hbncRecord = this.fb.group({
-      date: '',
+      date: newDate,
       weight: '',
     });
 
     this.hbnc.push(hbncRecord);
+  }
+
+  addDays(date: string, days: number): string {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result.toISOString().split('T')[0]; // Return date in YYYY-MM-DD format
   }
 
   onSubmit() {

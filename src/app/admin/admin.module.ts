@@ -6,9 +6,10 @@ import { HbncComponent } from './components/hbnc/hbnc.component';
 import { AddAncComponent } from './components/anc/add-anc/add-anc.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddHbncComponent } from './components/anc/add-hbnc/add-hbnc.component';
+import { ViewAncComponent } from './components/anc/view-anc/view-anc.component';
 
 @NgModule({
-  declarations: [AncComponent, HbncComponent, AddAncComponent, AddHbncComponent],
+  declarations: [AncComponent, HbncComponent, AddAncComponent, AddHbncComponent, ViewAncComponent],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
 })
 export class AdminModule {}
