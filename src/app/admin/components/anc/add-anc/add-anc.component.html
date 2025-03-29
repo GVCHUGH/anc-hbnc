@@ -273,7 +273,15 @@
         (click)="createANCDetail()"
         *ngIf="ancDetail.controls.length < 4"
       >
-        Add 1st ANC Detail
+        Add
+        {{
+          ancDetail.length + 1 == 2
+            ? "2nd"
+            : ancDetail.length + 1 == 3
+            ? "3rd"
+            : ancDetail.length + 1 + "th"
+        }}
+        ANC Detail
       </button>
       <div class="d-flex justify-content-center mt-2 gap-2">
         <button
