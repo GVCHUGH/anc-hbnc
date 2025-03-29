@@ -64,7 +64,6 @@ export class AddHbncComponent {
   }
 
   addHbncRecord() {
-    console.log(this.hbnc.length);
     let newDate = this.hbncForm.value.childBirthDate;
 
     switch (this.hbnc.length) {

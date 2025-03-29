@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AncService } from '../../../service/anc.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -58,9 +58,23 @@ export class AddAncComponent {
           Validators.minLength(10),
         ],
       ],
+      ancDetail: this.fb.array([]),
     });
 
     this.getEditData();
+  }
+
+  createANCDetail() {
+    const ancData = this.fb.group({
+      date: '',
+      hb: '',
+      weight: '',
+    });
+    this.ancDetail.push(ancData);
+  }
+
+  get ancDetail(): FormArray {
+    return this.ancForm.get('ancDetail') as FormArray;
   }
 
   getEditData() {
