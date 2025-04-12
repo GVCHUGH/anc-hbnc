@@ -18,7 +18,6 @@ export class AddHbncComponent {
     private dialogRef: MatDialogRef<AddHbncComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
     this.selectedId = data.ancData.id;
   }
 
@@ -107,8 +106,43 @@ export class AddHbncComponent {
     return result.toISOString().split('T')[0]; // Return date in YYYY-MM-DD format
   }
 
+  vaccinationSchedule: any[] = [
+    { name: 'BCG', dueAgeInMonths: 0, isGiven: false, date: '' },
+    { name: 'OPV-0', dueAgeInMonths: 0, isGiven: false, date: '' },
+    { name: 'HP-B', dueAgeInMonths: 0, isGiven: false, date: '' },
+    { name: 'OPV-1', dueAgeInMonths: 1, isGiven: false, date: '' },
+    { name: 'PENTA-1', dueAgeInMonths: 1, isGiven: false, date: '' },
+    { name: 'FIPV-1', dueAgeInMonths: 1, isGiven: false, date: '' },
+    { name: 'PCV-1', dueAgeInMonths: 1, isGiven: false, date: '' },
+    { name: 'RVV-1', dueAgeInMonths: 1, isGiven: false, date: '' },
+    { name: 'OPV-2', dueAgeInMonths: 2, isGiven: false, date: '' },
+    { name: 'PENTA-2', dueAgeInMonths: 2, isGiven: false, date: '' },
+    { name: 'RVV-2', dueAgeInMonths: 2, isGiven: false, date: '' },
+    { name: 'OPV-3', dueAgeInMonths: 3, isGiven: false, date: '' },
+    { name: 'PENTA-3', dueAgeInMonths: 3, isGiven: false, date: '' },
+    { name: 'FIPV-2', dueAgeInMonths: 3, isGiven: false, date: '' },
+    { name: 'PCV-2', dueAgeInMonths: 3, isGiven: false, date: '' },
+    { name: 'RVV-3', dueAgeInMonths: 3, isGiven: false, date: '' },
+    { name: 'MR-1', dueAgeInMonths: 4, isGiven: false, date: '' },
+    { name: 'VIT-A-1', dueAgeInMonths: 4, isGiven: false, date: '' },
+    { name: 'FIPV-3', dueAgeInMonths: 4, isGiven: false, date: '' },
+    { name: 'PCV-B', dueAgeInMonths: 4, isGiven: false, date: '' },
+    { name: 'DPT-B', dueAgeInMonths: 5, isGiven: false, date: '' },
+    { name: 'MR-2', dueAgeInMonths: 5, isGiven: false, date: '' },
+    { name: 'OPV-B', dueAgeInMonths: 5, isGiven: false, date: '' },
+    { name: 'VIT-A-2', dueAgeInMonths: 5, isGiven: false, date: '' },
+    { name: 'DPT-B-2', dueAgeInMonths: 6, isGiven: false, date: '' },
+    { name: 'TD', dueAgeInMonths: 7, isGiven: false, date: '' },
+    { name: 'TD', dueAgeInMonths: 8, isGiven: false, date: '' },
+  ];
+
   onSubmit() {
-    const updatedData = { ...this.data.ancData, ...this.hbncForm.value };
+    const updatedData = {
+      ...this.data.ancData,
+      ...this.hbncForm.value,
+      vaccinationSchedule: this.vaccinationSchedule,
+      vaccineNumber: 0,
+    };
     this.ancService
       .updateANC(updatedData, this.selectedId)
       .subscribe((res: any) => {

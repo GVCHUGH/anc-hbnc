@@ -5,6 +5,7 @@ import { AncService } from '../../service/anc.service';
 import { DeleteConfirmationComponent } from '../../../shared/components/delete-confirmation/delete-confirmation.component';
 import { AddHbncComponent } from './add-hbnc/add-hbnc.component';
 import { Router } from '@angular/router';
+import { AddVaccinationComponent } from './add-vaccination/add-vaccination.component';
 
 @Component({
   selector: 'app-anc',
@@ -91,7 +92,21 @@ export class AncComponent {
       })
       .afterClosed()
       .subscribe((res) => {
-        console.log(res);
+        if (res) {
+          this.getAllANC();
+        }
+      });
+  }
+  toVaccination(data: any) {
+    console.log(data);
+    this.dialog
+      .open(AddVaccinationComponent, {
+        data: {
+          ancData: data,
+        },
+      })
+      .afterClosed()
+      .subscribe((res) => {
         if (res) {
           this.getAllANC();
         }
